@@ -4,7 +4,11 @@
 
 `git clone https://github.com/Marzdor/slender_man_8_page_clone.git`
 
+You can now open the folder with the Unity Hub and it should initialize the Project.
+
 ## Make Changes
+
+WARNING: When Creating or moving files do it within Unity apperently you can get errors if moving in an external file explorer.
 
 To make chagnes make sure you are on the develop branch and have all changes pulled
 
