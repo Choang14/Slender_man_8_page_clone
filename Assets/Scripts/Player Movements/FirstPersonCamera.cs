@@ -6,12 +6,11 @@ public class FirstPersonCamera : MonoBehaviour
 {
 
     //Variables 
-    public Transform player;
-    public float mouseSensitivity = 2f;
-    float cameraVerticalRotation = 0f;
+    public float mouseSensitivity = 2000f;
+    public Transform orientation;
 
-    bool lockedCursor = true;
-
+    float yRotation;
+    float xRotation;
 
     // Start is called before the first frame update
     void Start()
@@ -24,17 +23,16 @@ public class FirstPersonCamera : MonoBehaviour
     void Update()
     {
         //Collect Mouse input
-        float inputX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float inputY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        float inputX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float inputY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        //Rotate the Camera Around its local axis
+        yRotation += inputX;
 
-        cameraVerticalRotation -= inputY;
-        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 90f);
-        transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
+        xRotation -= inputY;
 
-        //Rotate the player object and the camera around the y axis
+        xRotation = Mathf.Clamp (xRotation, -90.0f, 90f);
 
-        player.Rotate(Vector3.up * inputX);
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 }

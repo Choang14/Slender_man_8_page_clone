@@ -5,32 +5,49 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    public float speed = .06f;
+    public float speed;
+    public float drag;
+    public Transform orientation;
+
+    float horizontalInput;
+    float verticalInput;
+
+    Vector3 moveDirection;
+    private Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        keyboardMovement();
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(0f, 0f, speed);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(-speed, 0f, 0f);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(0f, 0f, -speed);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(speed, 0f, 0f);
-        }
+        //Handle Drag 
+        rb.drag = drag;
+    }
+
+    void FixedUpdate()
+    {
+        movePlayer();
+    }
+
+    void keyboardMovement()
+    {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
+    }
+
+    void movePlayer()
+    {
+        //calculate move direction
+        moveDirection  = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
     }
 }
