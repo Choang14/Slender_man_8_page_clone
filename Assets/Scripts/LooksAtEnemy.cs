@@ -9,6 +9,7 @@ public class LooksAtEnemy : MonoBehaviour
     public float drainRate, rechargeRate, audioIncreaseRate, audioDecreaseRate, playersHealth, healthDamage, healthRecharge;
     public bool canRecharge;
     public Image overlayImage;
+    public Slider healthBar;
     public Color color;
     public AudioSource lookedAtSound;
     public string deathScene;
@@ -19,6 +20,7 @@ public class LooksAtEnemy : MonoBehaviour
         playersHealth = 100f;
 
     }
+
 
     void FixedUpdate()
     {
@@ -43,7 +45,7 @@ public class LooksAtEnemy : MonoBehaviour
         }
 
 
-
+        healthBar.value = playersHealth;
         if (playersHealth <= 0)
         {
             Debug.Log("Player is dead.");
@@ -75,7 +77,8 @@ public class LooksAtEnemy : MonoBehaviour
 
         if (canRecharge)
         {
-            playersHealth += healthRecharge * Time.deltaTime;
+            float health = playersHealth + healthRecharge * Time.deltaTime;
+            playersHealth = Mathf.Min(100, health);
         }
     }
 }
