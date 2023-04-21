@@ -1810,7 +1810,7 @@ MonoBehaviour:
   playersHealth: 100
   healthDamage: 10
   healthRecharge: 5
-  canRecharge: 1
+  canRecharge: 0
   overlayImage: {fileID: 210926185}
   healthBar: {fileID: 1297796581}
   color: {r: 0.5849056, g: 0.40005338, b: 0.40005338, a: 0}

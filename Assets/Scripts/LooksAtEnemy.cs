@@ -13,6 +13,7 @@ public class LooksAtEnemy : MonoBehaviour
     public Color color;
     public AudioSource lookedAtSound;
     public string deathScene;
+    public LayerMask worldLayer;
 
     void Start()
     {
@@ -24,11 +25,12 @@ public class LooksAtEnemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 forward = transform.forward;
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-        if (Physics.Raycast(transform.position, forward, out var hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out var hit, Mathf.Infinity, worldLayer))
         {
             GameObject other = hit.collider.gameObject;
+            Debug.Log(other.name);
 
             if (other.name == "EnemyInView")
             {
