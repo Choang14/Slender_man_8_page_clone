@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 350407782}
   - component: {fileID: 350407781}
   - component: {fileID: 350407785}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +725,6 @@ GameObject:
   - component: {fileID: 370245341}
   - component: {fileID: 370245339}
   - component: {fileID: 370245340}
-  - component: {fileID: 370245342}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -792,7 +791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370245338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.69, z: 0.42}
+  m_LocalPosition: {x: 0, y: 0.63, z: 0.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -800,19 +799,6 @@ Transform:
   m_Father: {fileID: 1317998809}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &370245342
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370245338}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1, z: 1.75}
-  m_Center: {x: 0, y: 0, z: 1}
 --- !u!1 &859871242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,7 +1033,7 @@ GameObject:
   - component: {fileID: 921041157}
   - component: {fileID: 921041156}
   - component: {fileID: 921041155}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1173,7 +1159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1038643636}
   - component: {fileID: 1038643637}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyInView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1411,30 +1397,14 @@ GameObject:
   - component: {fileID: 1260268713}
   - component: {fileID: 1260268712}
   - component: {fileID: 1260268711}
-  - component: {fileID: 1260268710}
-  m_Layer: 0
+  - component: {fileID: 1260268716}
+  m_Layer: 6
   m_Name: Crayon
-  m_TagString: Untagged
+  m_TagString: Crayon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1260268710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260268709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b61af662400b8504bbe869f3ba97836c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crayonTextObj: {fileID: 1611944292}
-  interactText: {fileID: 2003770790}
-  pickupSound: {fileID: 0}
-  interactable: 0
 --- !u!54 &1260268711
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1530,6 +1500,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1260268716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260268709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b61af662400b8504bbe869f3ba97836c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crayonTextObj: {fileID: 1611944292}
+  interactText: {fileID: 2003770790}
+  pickupSound: {fileID: 0}
+  worldLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1297796579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,12 +1620,12 @@ GameObject:
   - component: {fileID: 1317998808}
   - component: {fileID: 1317998807}
   - component: {fileID: 1317998806}
-  - component: {fileID: 1317998813}
   - component: {fileID: 1317998805}
   - component: {fileID: 1317998812}
   - component: {fileID: 1317998811}
+  - component: {fileID: 1317998813}
   - component: {fileID: 1317998810}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1816,6 +1804,9 @@ MonoBehaviour:
   color: {r: 0.5849056, g: 0.40005338, b: 0.40005338, a: 0}
   lookedAtSound: {fileID: 1160862097}
   deathScene: DeathScreen
+  worldLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1416962376
 GameObject:
   m_ObjectHideFlags: 0
