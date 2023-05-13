@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Crayon
+<<<<<<< HEAD
+  - CrayonPosition
+=======
+>>>>>>> 3258e1c2d4929f88c7f3e5acd7b461e7595e1ffa
   layers:
   - Default
   - TransparentFX
@@ -11,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - World
   - 
   - 
   - 

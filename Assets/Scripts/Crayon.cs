@@ -6,54 +6,18 @@ public class Crayon : MonoBehaviour
 {
     public float speed = 5f;
     public int totalCrayons = 8;
-    public Text uiText;
     public GameObject promptText;
     public GameObject crayonPrefab;
     public GameObject winCanvas;
     public Button restartButton;
     public Button menuButton;
-    private int currentCrayons = 0;
     private bool canPickupCrayon = false;
     private Collider crayonCollider;
     private List<Transform> crayonPositions = new List<Transform>();
+    public CrayonController crayonController; // Add reference to the CrayonController script
 
     void Start()
     {
-        // Find all the crayon positions in the scene
-        GameObject[] crayonPositionObjects = GameObject.FindGameObjectsWithTag("CrayonPosition");
-        foreach (GameObject crayonPositionObject in crayonPositionObjects)
-        {
-            crayonPositions.Add(crayonPositionObject.transform);
-        }
-
-        // Randomly select 8 positions from the list of crayon positions
-        List<Transform> selectedPositions = new List<Transform>();
-        while (selectedPositions.Count < totalCrayons)
-        {
-            Transform randomPosition = crayonPositions[Random.Range(0, crayonPositions.Count)];
-            bool positionTooClose = false;
-            foreach (Transform selectedPosition in selectedPositions)
-            {
-                if (Vector3.Distance(randomPosition.position, selectedPosition.position) < 2f)
-                {
-                    positionTooClose = true;
-                    break;
-                }
-            }
-            if (!positionTooClose)
-            {
-                selectedPositions.Add(randomPosition);
-            }
-        }
-
-        // Instantiate a crayon at each selected position
-       /* foreach (Transform selectedPosition in selectedPositions)
-        {
-            Instantiate(crayonPrefab, selectedPosition.position, selectedPosition.rotation);
-        } */
-
-        // Initialize the UI text
-        uiText.text = "Crayons Collected: 0/" + totalCrayons.ToString();
         promptText.SetActive(false);
         winCanvas.SetActive(false);
         restartButton.onClick.AddListener(RestartGame);
@@ -97,10 +61,9 @@ public class Crayon : MonoBehaviour
 
     private void CollectCrayon(Collider crayon)
     {
-        currentCrayons++;
-        uiText.text = "Crayons Collected: " + currentCrayons.ToString() + "/" + totalCrayons.ToString();
+        crayonController.IncrementCrayonCount(); // Call the IncrementCrayonCount() method from the CrayonController script
         Destroy(crayon.gameObject);
-        if (currentCrayons == totalCrayons)
+        if (crayonController.numCrayons == totalCrayons) // Check the crayon count from the CrayonController script
         {
             // Show win canvas and disable movement
             winCanvas.SetActive(true);
@@ -116,6 +79,6 @@ public class Crayon : MonoBehaviour
     private void ExitToMenu()
     {
         // Load the menu scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 }

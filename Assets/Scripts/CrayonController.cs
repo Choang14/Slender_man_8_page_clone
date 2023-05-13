@@ -6,10 +6,10 @@ using TMPro;
 public class CrayonController : MonoBehaviour
 {
     public int numCrayons = 0;
+    public int totalCrayons = 8; // Add a variable for the total number of crayons
     public TextMeshProUGUI crayonCountText;
 
     private List<Transform> crayonPositions = new List<Transform>();
-    private float minDistanceBetweenCrayons = 2.0f;
 
     void Start()
     {
@@ -20,11 +20,13 @@ public class CrayonController : MonoBehaviour
         }
 
         // Place crayons at random valid positions
-        for (int i = 0; i < numCrayons; i++)
+        for (int i = 0; i < totalCrayons; i++) // Use totalCrayons instead of numCrayons
         {
             Transform position = GetRandomPosition();
             Instantiate(Resources.Load("Prefabs/Crayon"), position.position, Quaternion.identity);
         }
+
+        UpdateCrayonCountText(); // Update the text on start
     }
 
     private Transform GetRandomPosition()
@@ -37,15 +39,6 @@ public class CrayonController : MonoBehaviour
             position = crayonPositions[Random.Range(0, crayonPositions.Count)];
 
             positionIsValid = true;
-
-            foreach (Transform selectedPosition in crayonPositions)
-            {
-                if (Vector3.Distance(position.position, selectedPosition.position) < minDistanceBetweenCrayons)
-                {
-                    positionIsValid = false;
-                    break;
-                }
-            }
         }
 
         return position;
@@ -54,6 +47,11 @@ public class CrayonController : MonoBehaviour
     public void IncrementCrayonCount()
     {
         numCrayons++;
-        crayonCountText.text = "Crayons: " + numCrayons.ToString();
+        UpdateCrayonCountText(); // Call the new UpdateCrayonCountText() method
+    }
+
+    private void UpdateCrayonCountText()
+    {
+        crayonCountText.text = "Crayons: " + numCrayons.ToString() + "/" + totalCrayons.ToString(); // Update the text to show the current count and total count
     }
 }
