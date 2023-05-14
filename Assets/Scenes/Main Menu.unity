@@ -3288,17 +3288,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 934587420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 266c856006acc8f4cbd7c63d8d10aa0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e81e52bb4bd24746836df9f4a00a437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canUse: 1
-  menuController: {fileID: 1145050217}
-  volumeTextvalue: {fileID: 553906804}
-  volumeSlider: {fileID: 950329891}
-  brightnessSldier: {fileID: 1034562926}
-  BrightnessTextValue: {fileID: 182870645}
-  qualityDropdown: {fileID: 215782734}
-  fullScreenToggle: {fileID: 1705352323}
+  canUse: 0
+  menuController: {fileID: 0}
+  volumeTextvalue: {fileID: 0}
+  volumeSlider: {fileID: 0}
+  brightnessSldier: {fileID: 0}
+  BrightnessTextValue: {fileID: 0}
+  qualityDropdown: {fileID: 0}
+  fullScreenToggle: {fileID: 0}
   controllerSenTextValue: {fileID: 0}
   controllerSenSlider: {fileID: 0}
   invertYToggle: {fileID: 0}
