@@ -61,8 +61,10 @@ public class LooksAtEnemy : MonoBehaviour
         color.a = Mathf.Min(1, newTime);
         overlayImage.color = color;
 
-        float newVolume = lookedAtSound.volume + audioIncreaseRate * Time.deltaTime;
-        lookedAtSound.volume = Mathf.Min(1, newVolume);
+        //float newVolume = lookedAtSound.volume + audioIncreaseRate * Time.deltaTime;
+        //lookedAtSound.volume = Mathf.Min(1, newVolume);
+
+        lookedAtSound.volume = lookedAtSound.volume + audioIncreaseRate * Time.deltaTime;
 
         playersHealth -= healthDamage * Time.deltaTime;
 
@@ -74,8 +76,10 @@ public class LooksAtEnemy : MonoBehaviour
         color.a = Mathf.Max(newTime, 0);
         overlayImage.color = color;
 
-        float newVolume = lookedAtSound.volume + audioIncreaseRate * Time.deltaTime;
-        lookedAtSound.volume = Mathf.Max(newVolume, 0);
+        //float newVolume = lookedAtSound.volume + audioIncreaseRate * Time.deltaTime;
+        //lookedAtSound.volume = Mathf.Max(newVolume, 0);
+
+        lookedAtSound.volume = lookedAtSound.volume - audioDecreaseRate * Time.deltaTime;
 
         if (canRecharge)
         {
