@@ -1,53 +1,96 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class CrayonController : MonoBehaviour
 {
     public int numCrayons = 0;
-    public int totalCrayons = 8; // Add a variable for the total number of crayons
+    public int totalCrayons = 0;
     public TextMeshProUGUI crayonCountText;
+    public GameObject /*crayonTextObj,*/ interactText;
+    public AudioSource pickupSound;
+    public LayerMask worldLayer;
+    private bool canGrab;
+    private Collider crayonCollider;
 
-    private List<Transform> crayonPositions = new List<Transform>();
+
 
     void Start()
     {
-        // Find all crayon positions in the scene
-        foreach (GameObject crayonPositionObj in GameObject.FindGameObjectsWithTag("CrayonPosition"))
+
+        // Find all existing crayons in the scene and deactivate them
+        GameObject[] existingCrayons = GameObject.FindGameObjectsWithTag("Crayon");
+        foreach (GameObject crayon in existingCrayons)
         {
-            crayonPositions.Add(crayonPositionObj.transform);
+            crayon.SetActive(false);
         }
 
-        // Place crayons at random valid positions
-        for (int i = 0; i < totalCrayons; i++) // Use totalCrayons instead of numCrayons
+        // Randomly select and activate 8 crayons
+        for (int i = 0; i < totalCrayons; i++)
         {
-            Transform position = GetRandomPosition();
-            Instantiate(Resources.Load("Prefabs/Crayon"), position.position, Quaternion.identity);
+            GameObject crayon;
+            do
+            {
+                crayon = existingCrayons[Random.Range(0, existingCrayons.Length)];
+            } while (crayon.activeSelf); // Ensure we select a deactivated crayon
+
+            crayon.SetActive(true);
         }
 
         UpdateCrayonCountText(); // Update the text on start
     }
 
-    private Transform GetRandomPosition()
+    void FixedUpdate()
     {
-        Transform position = null;
-        bool positionIsValid = false;
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Debug.DrawRay(ray.origin, ray.direction * 2);
 
-        while (!positionIsValid)
+        if (Physics.Raycast(ray, out var hit, 2, worldLayer))
         {
-            position = crayonPositions[Random.Range(0, crayonPositions.Count)];
+            GameObject other = hit.collider.gameObject;
+            Debug.Log(other.name);
 
-            positionIsValid = true;
+            if (other.CompareTag("Crayon"))
+            {
+                interactText.SetActive(true);
+                canGrab = true;
+                crayonCollider = hit.collider;
+            }
+            else
+            {
+                interactText.SetActive(false);
+                canGrab = false;
+            }
         }
-
-        return position;
+        else
+        {
+            interactText.SetActive(false);
+            canGrab = false;
+        }
     }
 
-    public void IncrementCrayonCount()
+    void Update()
+    {
+        if (canGrab && Input.GetKeyDown(KeyCode.E))
+        {
+            CollectCrayon(crayonCollider);
+        }
+    }
+
+    public void CollectCrayon(Collider crayon)
     {
         numCrayons++;
-        UpdateCrayonCountText(); // Call the new UpdateCrayonCountText() method
+        Destroy(crayon.gameObject);
+        UpdateCrayonCountText();
+        interactText.SetActive(false);
+        canGrab = false;
+        // pickupSound.Play();
+
+        if (numCrayons == totalCrayons)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("You Win!");
+        }
     }
 
     private void UpdateCrayonCountText()

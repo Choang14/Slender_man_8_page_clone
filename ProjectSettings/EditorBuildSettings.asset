@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Scene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655aa
+  - enabled: 1
+    path: Assets/Scenes/You Win!.unity
+    guid: 770914cbc4679e14c8996fc66078e416
   m_configObjects: {}

@@ -1,4 +1,4 @@
-using UnityEngine;
+/* using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
@@ -59,7 +59,8 @@ public class Crayon : MonoBehaviour
         }
     }
 
-    private void CollectCrayon(Collider crayon)
+
+   *private void CollectCrayon(Collider crayon)
     {
         crayonController.IncrementCrayonCount(); // Call the IncrementCrayonCount() method from the CrayonController script
         Destroy(crayon.gameObject);
@@ -81,4 +82,4 @@ public class Crayon : MonoBehaviour
         // Load the menu scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
-}
+} */
