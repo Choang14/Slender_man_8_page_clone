@@ -13,12 +13,12 @@ public class YouWinController : MonoBehaviour
         menuButton.onClick.AddListener(ReturnToMainMenu);
     }
 
-    private void RetryGame()
+    public void RetryGame()
     {
         SceneManager.LoadScene("Main Scene");
     }
 
-    private void ReturnToMainMenu()
+    public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("Main Menu");
     }
