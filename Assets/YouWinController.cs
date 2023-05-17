@@ -7,13 +7,13 @@ public class YouWinController : MonoBehaviour
     public Button retryButton;
     public Button menuButton;
 
-    private void Start()
+    private void OnEnable()
     {
-        retryButton.onClick.AddListener(RetryGame);
-        menuButton.onClick.AddListener(ReturnToMainMenu);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
-    public void RetryGame()
+public void RetryGame()
     {
         SceneManager.LoadScene("Main Scene");
     }
