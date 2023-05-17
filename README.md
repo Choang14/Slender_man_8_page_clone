@@ -1,4 +1,9 @@
-# Slender Man: 8 Page Clone
+# Slender Man: 8 Page Clone - Cody's Crayons
+
+## Group Members
+
+Carlos Acosta, Alex Hernandez, Cindy Hoang, 
+Max Ingersoll, Katelyn Langley, Ulises Perez
 
 ## Get Project on your system
 
